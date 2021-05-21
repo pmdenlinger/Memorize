@@ -21,8 +21,11 @@ struct ContentView: View {
 }
 
 struct CardView: View {
+    var isFaceUp: Bool { return false }
+    
     var body: some View {
         ZStack {
+            if isFaceUp {
             RoundedRectangle(cornerRadius: 20)
                 .fill()
                 .foregroundColor(.white)
@@ -30,7 +33,10 @@ struct CardView: View {
                 .stroke(lineWidth: 3.0)
             Text("🚂")
                 .font(.largeTitle)
-                .foregroundColor(.orange)
+            } else {
+                RoundedRectangle(cornerRadius: 20)
+                    .fill()
+            }
         }
     }
 }
@@ -58,8 +64,8 @@ struct CardView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-            .preferredColorScheme(.dark)
-        ContentView()
             .preferredColorScheme(.light)
+        ContentView()
+            .preferredColorScheme(.dark)
     }
 }
